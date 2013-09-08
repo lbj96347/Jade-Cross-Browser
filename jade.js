@@ -418,7 +418,8 @@ Compiler.prototype = {
     if (pp && !tag.isInline())
       this.prettyIndent(0, true);
 
-    if ((~selfClosing.indexOf(name) || tag.selfClosing) && !this.xml) {
+    //if ((~selfClosing.indexOf(name) || tag.selfClosing) && !this.xml) {
+    if ((tag.selfClosing) && !this.xml) {
       this.buffer('<' + name);
       this.visitAttributes(tag.attrs);
       this.terse
@@ -3344,7 +3345,7 @@ Parser.prototype = {
     // newline*
     while ('newline' == this.peek().type) this.advance();
 
-    tag.textOnly = tag.textOnly || ~textOnly.indexOf(tag.name);
+    tag.textOnly = tag.textOnly;// || ~textOnly.indexOf(tag.name);
 
     // script special-case
     if ('script' == tag.name) {
@@ -3649,6 +3650,12 @@ exports.merge = function(a, b) {
 
 
 }); // module: utils.js
+
+String.prototype.trim= function(){  
+  // 用正则表达式将前后空格  
+  // 用空字符串替代。  
+  return this.replace(/(^\s*)|(\s*$)/g, "");  
+}
 
 window.jade = require("jade");
 })();
