@@ -1,0 +1,34 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Jade Template Engine - Cross Browser</title>
+</head>
+<body>
+  <div id='render-target' data-test='hello world'></div>
+</body>
+<script id='template' type='template'>
+h2 hello world
+p Would you like to use Jade Template?
+ul
+- for( var i = 0 ; i < 3 ; i ++ ){
+    li print #{ i } 
+- }
+</script>
+<script src='../lib/jquery-1.8.2.min.js'></script>
+<script src='../jade.js'></script>
+<script>
+var renderData;//全局变量
+var render_template = function ( target_id , writeData , index){
+  renderData = writeData;
+  var template_string = $('#template').html();
+  var compileText = template_string;//获取要编译模板字符串
+  var compile = jade.compile( compileText , { layout : false } );//编译需要渲染的元素
+  var outputText = compile( renderData );
+  $( target_id ).empty();//清空要渲染的元素
+  $( target_id ).append( outputText );//渲染到元素上
+};
+render_template( '#render-target' , null , 0);
+</script>
+</html>
+
