@@ -3,7 +3,7 @@ Jade-Cross-Browser
 
 Jade - robust, elegant, feature rich template engine for NodeJs.Jade also can be used on client side except IE family.So I write some compatible codes to cross browser.
 
-Introduction
+## Introduction ##
 
 ------------
 
@@ -13,7 +13,7 @@ array-prototype.js -- The original jade.js is created by ECMAScript5 so that IE6
 
 example -- An example of using jade in a cross browser demo.
 
-Usage & Demo
+## Usage & Demo ##
 
 -----
 
