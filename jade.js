@@ -417,6 +417,12 @@ Compiler.prototype = {
     // pretty print
     if (pp && !tag.isInline())
       this.prettyIndent(0, true);
+      
+/*
+ * Compatible code for IE family 
+ * Copyright(c) 2010 CashLee <cashlee96347@gmail.com>
+ * MIT Licensed
+ */
 
     //if ((~selfClosing.indexOf(name) || tag.selfClosing) && !this.xml) {
     if ((tag.selfClosing) && !this.xml) {
@@ -3344,6 +3350,12 @@ Parser.prototype = {
 
     // newline*
     while ('newline' == this.peek().type) this.advance();
+    
+/*
+ * Compatible code for IE family
+ * Copyright(c) 2010 CashLee <cashlee96347@gmail.com>
+ * MIT Licensed
+ */
 
     tag.textOnly = tag.textOnly;// || ~textOnly.indexOf(tag.name);
 
@@ -3650,6 +3662,13 @@ exports.merge = function(a, b) {
 
 
 }); // module: utils.js
+
+/*
+ * Add string prototype 
+ * Copyright(c) 2010 CashLee <cashlee96347@gmail.com>
+ * MIT Licensed
+ */
+
 
 String.prototype.trim= function(){  
   // 用正则表达式将前后空格  
