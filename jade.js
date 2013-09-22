@@ -424,8 +424,8 @@ Compiler.prototype = {
  * MIT Licensed
  */
 
-    if (( (parseInt(selfClosing.indexOf(name))*(-1)-1) || tag.selfClosing) && !this.xml) {
-    //if ((tag.selfClosing) && !this.xml) {
+    //if (( (parseInt(selfClosing.indexOf(name))*(-1)-1) || tag.selfClosing) && !this.xml) {
+    if ((tag.selfClosing) && !this.xml) {
       this.buffer('<' + name);
       this.visitAttributes(tag.attrs);
       this.terse
@@ -3357,7 +3357,7 @@ Parser.prototype = {
  * MIT Licensed
  */
 
-    tag.textOnly = tag.textOnly || (parseInt( textOnly.indexOf(tag.name) )*(-1) - 1);
+    tag.textOnly = tag.textOnly;// || (parseInt( textOnly.indexOf(tag.name) )*(-1) - 1);
 
     // script special-case
     if ('script' == tag.name) {
