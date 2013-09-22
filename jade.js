@@ -424,8 +424,8 @@ Compiler.prototype = {
  * MIT Licensed
  */
 
-    //if ((~selfClosing.indexOf(name) || tag.selfClosing) && !this.xml) {
-    if ((tag.selfClosing) && !this.xml) {
+    if (( (parseInt(selfClosing.indexOf(name))*(-1)-1) || tag.selfClosing) && !this.xml) {
+    //if ((tag.selfClosing) && !this.xml) {
       this.buffer('<' + name);
       this.visitAttributes(tag.attrs);
       this.terse
@@ -2586,7 +2586,7 @@ Tag.prototype.clone = function(){
  */
 
 Tag.prototype.isInline = function(){
-  return ~inlineTags.indexOf(this.name);
+  return (parseInt(inlineTags.indexOf(this.name))*(-1)-1);
 };
 
 /**
@@ -3141,7 +3141,7 @@ Parser.prototype = {
       throw new Error('the "filename" option is required to use includes');
 
     // no extension
-    if (!~basename(path).indexOf('.')) {
+    if (! ( parseInt( basename(path).indexOf('.')) )*(-1) - 1) {
       path += '.jade';
     }
 
@@ -3357,7 +3357,7 @@ Parser.prototype = {
  * MIT Licensed
  */
 
-    tag.textOnly = tag.textOnly;// || ~textOnly.indexOf(tag.name);
+    tag.textOnly = tag.textOnly || (parseInt( textOnly.indexOf(tag.name) )*(-1) - 1);
 
     // script special-case
     if ('script' == tag.name) {
