@@ -424,8 +424,8 @@ Compiler.prototype = {
  * MIT Licensed
  */
 
-    //if (( (parseInt(selfClosing.indexOf(name))*(-1)-1) || tag.selfClosing) && !this.xml) {
-    if ((tag.selfClosing) && !this.xml) {
+    if (( (parseInt(selfClosing.indexOf(name))*(-1)-1) || tag.selfClosing) && !this.xml) {
+    //if ((tag.selfClosing) && !this.xml) {
       this.buffer('<' + name);
       this.visitAttributes(tag.attrs);
       this.terse
@@ -3357,7 +3357,7 @@ Parser.prototype = {
  * MIT Licensed
  */
 
-    tag.textOnly = tag.textOnly;// || (parseInt( textOnly.indexOf(tag.name) )*(-1) - 1);
+    tag.textOnly = tag.textOnly || (parseInt( textOnly.indexOf(tag.name) )*(-1) - 1);
 
     // script special-case
     if ('script' == tag.name) {
@@ -3674,6 +3674,15 @@ String.prototype.trim= function(){
   // 用正则表达式将前后空格  
   // 用空字符串替代。  
   return this.replace(/(^\s*)|(\s*$)/g, "");  
+}
+
+if (!Array.prototype.indexOf) { 
+    Array.prototype.indexOf = function(obj, start) {
+         for (var i = (start || 0), j = this.length; i < j; i++) {
+             if (this[i] === obj) { return i; }
+         }
+         return -1;
+    }
 }
 
 window.jade = require("jade");
